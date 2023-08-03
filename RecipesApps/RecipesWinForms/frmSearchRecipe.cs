@@ -1,7 +1,5 @@
-﻿using CPUFramework;
-using System.Data;
-using CPUWindowsFormFramework;
-
+﻿using  System.Data;
+using CPUFramework;
 namespace RecipesWinForms
 {
     public partial class frmSearchRecipe : Form
@@ -18,11 +16,7 @@ namespace RecipesWinForms
 
         private void SearchForRecipe(string recipename)
         {
-            string sql = "select RecipeId, RecipeName from Recipe r " +
-                "where r.RecipeName like '%" + recipename + "%'";
-
-
-            DataTable dt = SQLUtility.GetDataTable(sql);
+            DataTable dt = Recipe.SearchRecipes(recipename);
             gRecipe.DataSource = dt;
             gRecipe.Columns["RecipeId"].Visible = false;
         }

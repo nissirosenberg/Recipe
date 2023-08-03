@@ -1,5 +1,9 @@
 using CPUFramework;
+using RecipeSystem;
+
+
 namespace RecipesWinForms
+
 {
     internal static class Program
     {
@@ -12,7 +16,7 @@ namespace RecipesWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            SQLUtility.ConnectionString = "Server=.\\SQLExpress01;Database=HeartyHearthDB;Trusted_Connection=true";
+            DBManager.SetConnectionString("Server=.\\SQLExpress01;Database=HeartyHearthDB;Trusted_Connection=true");
             Application.Run(new frmSearchRecipe());
         }
     }

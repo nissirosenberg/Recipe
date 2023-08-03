@@ -222,7 +222,6 @@
             // 
             // dtpDateDrafted
             // 
-            dtpDateDrafted.Enabled = false;
             dtpDateDrafted.Format = DateTimePickerFormat.Short;
             dtpDateDrafted.Location = new Point(126, 151);
             dtpDateDrafted.Name = "dtpDateDrafted";
