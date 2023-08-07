@@ -12,6 +12,22 @@ namespace RecipeTest
         }
 
         [Test]
+        public void SearchRecipes()
+        {
+            string criteria = "a";
+            int numrecipes = SQLUtility.GetFirstColumFirstRowValue("Select Total = count(*) from Recipe r where r.RecipeName like '%" + criteria + "%'");
+            Assume.That(numrecipes > 0, "No recipes in DB, can't test");
+            TestContext.WriteLine("There are " + numrecipes + " recipes that contain " + criteria + " in its name");
+            TestContext.WriteLine("Ensure that recipe search returns " + numrecipes + " rows");
+
+            DataTable dt = Recipe.SearchRecipes(criteria);
+            int results = dt.Rows.Count;
+
+            Assert.IsTrue(results == numrecipes, "Results of recipe search does not match number of recipes");
+            TestContext.WriteLine("Number of rows returns by recipe search is " + results);
+        }
+
+        [Test]
         public void InsertNewRecipe()
         {
             DataTable dt = SQLUtility.GetDataTable("select * from Recipe where RecipeId = 0");
@@ -35,11 +51,6 @@ namespace RecipeTest
             int newid = SQLUtility.GetFirstColumFirstRowValue("select RecipeId from Recipe where RecipeName = '" + recipetestname + "'");
             Assert.IsTrue(newid > 0, "The data was not inserted");
             TestContext.WriteLine("Recipe with RecipeName " + recipetestname + " is found in the DB with primary key value of " + newid);
-
-            
-
-
-
         }
 
         [Test]
