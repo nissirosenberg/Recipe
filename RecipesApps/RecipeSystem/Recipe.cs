@@ -36,7 +36,11 @@ namespace RecipeSystem
 
         public static DataTable GetCuisineTypeList()
         {
-            return SQLUtility.GetDataTable("select CuisineTypeId, CuisineTypeName from CuisineType");
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CuisineTypeGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static void Save(DataTable dtrecipe)
