@@ -57,7 +57,7 @@ namespace RecipeTest
         public void ChangeRecipe()
         {
             int recipeid = GetExistingId("Recipe");
-            Assume.That(recipeid > 0);
+            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
             DataTable dtrecipe = SQLUtility.GetDataTable("select top 1 r.RecipeId, r.RecipeName, u.UserId, u.UserName, r.CuisineTypeId, ct.CuisineTypeName, r.Calories from Recipe r join Users u on r.UserId = u.UserId join CuisineType ct on r.CuisineTypeId = ct.CuisineTypeId where r.RecipeId = " + recipeid);
             
             string recipename = dtrecipe.Rows[0]["RecipeName"].ToString();
@@ -70,6 +70,8 @@ namespace RecipeTest
             recipename += "x";
             int randomuserid = SQLUtility.GetFirstColumFirstRowValue("select top 1 UserId from Users where UserId <> " + userid);
             int randomcuisinetypeid = SQLUtility.GetFirstColumFirstRowValue("select top 1 CuisineTypeId from CuisineType where CuisineTypeId <> " + cuisinetypeid);
+            Assume.That(randomuserid > 0, "No other user in DB, can't test");
+            Assume.That(randomcuisinetypeid > 0, "No other cuisine type in DB, can't test");
             calories = calories + 7;
             
             TestContext.WriteLine("Change RecipeName to " + recipename + " and UserId to " + randomuserid + " and CuisineTypeId to " + randomcuisinetypeid + " and Calories to " + calories);
@@ -143,7 +145,7 @@ namespace RecipeTest
             int totalusers = SQLUtility.GetFirstColumFirstRowValue("select total = count(*) from Users");
             Assume.That(totalusers > 0, "No users in DB, can't test");
             TestContext.WriteLine("Number of Users in DB = " + totalusers);
-            TestContext.WriteLine("Ensure that number of users = " + totalusers);
+            TestContext.WriteLine("Ensure that number of users returned by test = " + totalusers);
 
             DataTable dt = Recipe.GetUsersList();
             Assert.IsTrue(dt.Rows.Count == totalusers, "Number of users (" + dt.Rows.Count + ") <> " + totalusers);
