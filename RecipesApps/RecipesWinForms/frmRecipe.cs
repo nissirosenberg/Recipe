@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using CPUFramework;
+using System.Data;
 
 using System.Diagnostics;
 
@@ -27,8 +28,6 @@ namespace RecipesWinForms
             DataTable dtusers = Recipe.GetUsersList();
             DataTable dtcuisinetype = Recipe.GetCuisineTypeList();
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
-            //Is there a shorter way I can do this? I had a problem using the procedure because my tablename is Users,
-            //and my columns are User. User is a reserved word in sql.
             lstUserName.DataSource = dtusers;
             lstUserName.ValueMember = "UserId";
             lstUserName.DisplayMember = "UserName";
@@ -44,13 +43,37 @@ namespace RecipesWinForms
 
         private void Save()
         {
-            Recipe.Save(dtrecipe);
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtrecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void Delete()
         {
-            Recipe.Delete(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message , "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = true;
+            }
         }
 
 
@@ -64,7 +87,5 @@ namespace RecipesWinForms
         {
             Save();
         }
-
-
     }
 }
