@@ -43,6 +43,7 @@ namespace RecipesWinForms
 
         private void Save()
         {
+       
             Application.UseWaitCursor = true;
             try
             {
@@ -60,6 +61,11 @@ namespace RecipesWinForms
 
         private void Delete()
         {
+            var response = MessageBox.Show("Are you sure you want to delete this recipe?", "Recipe", MessageBoxButtons.YesNo);
+            if (response == DialogResult.No)
+            {
+                return;
+            }
             Application.UseWaitCursor = true;
             try
             {
@@ -72,7 +78,7 @@ namespace RecipesWinForms
             }
             finally
             {
-                Application.UseWaitCursor = true;
+                Application.UseWaitCursor = false;
             }
         }
 
