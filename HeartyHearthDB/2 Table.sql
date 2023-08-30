@@ -71,7 +71,7 @@ create table dbo.Recipe(
         constraint c_Recipe_RecipeName unique,
     Calories int not null 
         constraint c_Recipe_Calories_must_be_0_or_above check(Calories >= 0),
-    DateDrafted datetime default getdate() 
+    DateDrafted datetime not null--default getdate() 
         constraint c_Recipe_Date_drafted_must_be_after_January_1_2020 check(DateDrafted > '2020-01-01'),
     DatePublished datetime,
     DateArchived datetime,

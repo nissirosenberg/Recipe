@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRecipe));
+            dtpDateDrafted = new DateTimePicker();
             tblMain = new TableLayoutPanel();
             lblRecipeName = new Label();
             lblCalories = new Label();
@@ -43,7 +44,6 @@
             txtCurrentStatus = new TextBox();
             lblUserName = new Label();
             lblCuisineTypeName = new Label();
-            dtpDateDrafted = new DateTimePicker();
             tsMain = new ToolStrip();
             btnDelete = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -53,6 +53,15 @@
             tblMain.SuspendLayout();
             tsMain.SuspendLayout();
             SuspendLayout();
+            // 
+            // dtpDateDrafted
+            // 
+            dtpDateDrafted.Format = DateTimePickerFormat.Short;
+            dtpDateDrafted.Location = new Point(126, 151);
+            dtpDateDrafted.Name = "dtpDateDrafted";
+            dtpDateDrafted.Size = new Size(144, 29);
+            dtpDateDrafted.TabIndex = 12;
+            dtpDateDrafted.Value = new DateTime(2023, 8, 30, 9, 28, 33, 0);
             // 
             // tblMain
             // 
@@ -219,14 +228,6 @@
             lblCuisineTypeName.Size = new Size(100, 21);
             lblCuisineTypeName.TabIndex = 2;
             lblCuisineTypeName.Text = "Cuisine Type:";
-            // 
-            // dtpDateDrafted
-            // 
-            dtpDateDrafted.Format = DateTimePickerFormat.Short;
-            dtpDateDrafted.Location = new Point(126, 151);
-            dtpDateDrafted.Name = "dtpDateDrafted";
-            dtpDateDrafted.Size = new Size(144, 29);
-            dtpDateDrafted.TabIndex = 12;
             // 
             // tsMain
             // 

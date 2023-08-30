@@ -43,7 +43,7 @@ namespace RecipesWinForms
 
         private void Save()
         {
-       
+
             Application.UseWaitCursor = true;
             try
             {
@@ -74,7 +74,7 @@ namespace RecipesWinForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message , "Recipe");
+                MessageBox.Show(ex.Message, "Recipe");
             }
             finally
             {

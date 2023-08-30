@@ -173,9 +173,24 @@ namespace RecipeTest
         }
 
         [Test]
-        public void DeleteRecipeWithForeignRecords()
+        public void DeleteRecipeWithForeignRecordsThatIsNotDraftedOrArchivedForThirtyDays()
         {
-            DataTable dt = SQLUtility.GetDataTable("select r.RecipeId, r.RecipeName from Recipe r left join RecipeIngredients ri on r.RecipeId = ri.RecipeId left join RecipeDirections rd on r.RecipeId = rd.RecipeId left join CookbookRecipe cr on r.RecipeId = cr.RecipeId where ri.RecipeIngredientsId is not null and rd.RecipeDirectionsId is not null and cr.CookbookRecipeId is not null");
+            string sql = @"select r.RecipeId, r.RecipeName 
+                            from Recipe r 
+                            left join RecipeIngredients ri 
+                            on r.RecipeId = ri.RecipeId 
+                            left join RecipeDirections rd 
+                            on r.RecipeId = rd.RecipeId 
+                            left join CookbookRecipe cr 
+                            on r.RecipeId = cr.RecipeId 
+                            where ri.RecipeIngredientsId is not null 
+                            and rd.RecipeDirectionsId is not null 
+                            and cr.CookbookRecipeId is not null
+                            and 
+                               (DATEDIFF(day, r.DateArchived, GETDATE()) <= 30 
+                                or 
+                                r.CurrentStatus = 'Published')";
+            DataTable dt = SQLUtility.GetDataTable(sql);
             Assume.That(dt.Rows.Count > 0, "No recipes with foriegn records, can't test");
             int recipeid = (int)dt.Rows[0]["RecipeId"];
 
