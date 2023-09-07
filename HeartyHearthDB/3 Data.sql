@@ -90,7 +90,7 @@ union select 'Carry', 'Cooker', 'CC23'
     union select 'Cheese Bread', 'English', 250, 'CC23', '2020-05-05 11:00', '2020-06-06 15:06', '2020-07-07 12:50'
     union select 'Butter Muffins', 'American', 85, 'CC23', '2020-08-08 16:30', null, '2020-09-09 4:27'
     union select 'Lovely Lemonade', 'Italian', 30, 'AA23', '2022-01-01 12:00', null, null
-    union select 'Hot Cocoa', 'French', 20, 'BB23', '2022-02-02 12:00', null, '2022-03-03 5:30'
+    union select 'Hot Cocoa', 'French', 20, 'BB23', '2022-02-02 12:00', null, '2023-08-025 5:30'
     union select 'Jello Ices', 'American', 15, 'CC23', '2022-04-04 15:40', '2022-05-05 14:34', null
 )
 insert Recipe(RecipeName, CuisineTypeId, Calories, UserId, DateDrafted, DatePublished, DateArchived)
