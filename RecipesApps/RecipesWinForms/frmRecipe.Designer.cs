@@ -61,7 +61,7 @@
             dtpDateDrafted.Name = "dtpDateDrafted";
             dtpDateDrafted.Size = new Size(144, 29);
             dtpDateDrafted.TabIndex = 12;
-            dtpDateDrafted.Value = new DateTime(2023, 8, 30, 9, 28, 33, 0);
+            dtpDateDrafted.Value = new DateTime(2023, 10, 19, 0, 0, 0, 0);
             // 
             // tblMain
             // 
