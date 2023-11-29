@@ -1,13 +1,16 @@
-create or alter procedure dbo.CuisineTypeGet(@CuisineTypeId int = 0, @All bit = 0, @CuisineTypeName varchar(35) = '')
+create or alter procedure dbo.CuisineTypeGet(@CuisineTypeId int = 0, @All bit = 0, @CuisineTypeName varchar(35) = '', @IncludeBlank bit = 0)
 as 
 begin
-	select @CuisineTypeName = nullif(@CuisineTypeName, '')
+	select @CuisineTypeName = nullif(@CuisineTypeName, ''), @IncludeBlank = isnull(@IncludeBlank, 0)
 
 	select ct.CuisineTypeId, ct.CuisineTypeName
 	from CuisineType ct 
 	where ct.CuisineTypeId = @CuisineTypeId
 	or @All = 1
 	or ct.CuisineTypeName like '%' + @CuisineTypeName + '%'
+	union select 0, ' '
+	where @IncludeBlank = 1
+	order by ct.CuisineTypeId
 end 
 go 
 

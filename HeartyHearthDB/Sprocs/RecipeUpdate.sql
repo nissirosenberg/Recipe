@@ -4,7 +4,10 @@ create or alter procedure dbo.RecipeUpdate(
 	@CuisineTypeId int = 0,
 	@RecipeName varchar(100) = '',
 	@Calories int = 0,
-	@DateDrafted datetime = '',
+	@DateDrafted datetime = ''  output,
+	@DatePublished datetime null = '' output,
+	@DateArchived datetime null = '' output,
+	@CurrentStatus varchar(25) = '' output,
 	@Message varchar(500) = '' output
 )
 as
@@ -16,14 +19,15 @@ begin
 		   @CuisineTypeId = isnull(@CuisineTypeId, 0),
 		   @RecipeName = isnull(@RecipeName, ''),
 		   @Calories = isnull(@Calories, 0),
-		   @DateDrafted = isnull(@DateDrafted, CURRENT_TIMESTAMP)
+		   @DateDrafted = isnull(@DateDrafted, convert(varchar, GETDATE(), 101)),
+		   @CurrentStatus = isnull(@CurrentStatus, 'Draft')
 
 
 
 	if @RecipeId = 0
 	begin
-		insert Recipe(UserId, CuisineTypeId, RecipeName, Calories, DateDrafted)
-		values(@UserId, @CuisineTypeId, @RecipeName, @Calories, @DateDrafted)
+		insert Recipe(UserId, CuisineTypeId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
+		values(@UserId, @CuisineTypeId, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
 
 		select @RecipeId = SCOPE_IDENTITY()
 	end
@@ -35,10 +39,15 @@ begin
 			CuisineTypeId = @CuisineTypeId, 
 			RecipeName = @RecipeName, 
 			Calories = @Calories, 
-			DateDrafted = @DateDrafted
+			DateDrafted = @DateDrafted,
+			DatePublished = @DatePublished, 
+			DateArchived = @DateArchived
 		where RecipeId = @RecipeId
 	end
 	
 	return @return
 end
 go
+
+
+

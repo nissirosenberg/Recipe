@@ -79,7 +79,7 @@ delete ri
 from Users u 
 join Recipe r 
 on u.UserId = r.UserId
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on r.RecipeId = ri.RecipeId
 where u.UserName = 'CC23'
 
@@ -105,10 +105,10 @@ from Recipe r
 where r.RecipeName = 'Butter Muffins'
 
 
-insert RecipeIngredients(RecipeId, Amount, MeasurementId, IngredientSequence, IngredientId)
+insert RecipeIngredient(RecipeId, Amount, MeasurementId, IngredientSequence, IngredientId)
 select (select r.RecipeId from Recipe r where r.RecipeName = concat('Butter Muffins', ' - clone')), ri.Amount, ri.MeasurementId, ri.IngredientSequence, ri.IngredientId
 from Recipe r 
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on r.RecipeId = ri.RecipeId
 where r.RecipeName = 'Butter Muffins'
 
@@ -169,7 +169,7 @@ set r.Calories = r.Calories + case m.MeasurementName
 			when 'Sticks' then 8
 			end * ri.Amount
 from Ingredient i 
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on i.IngredientId = ri.IngredientId
 join Measurement m 
 on ri.MeasurementId = m.MeasurementId

@@ -155,7 +155,7 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select r.RecipeId, r.RecipeName from Recipe r left join RecipeIngredients ri on r.RecipeId = ri.RecipeId left join RecipeDirections rd on r.RecipeId = rd.RecipeId left join CookbookRecipe cr on r.RecipeId = cr.RecipeId where ri.RecipeIngredientsId is null and rd.RecipeDirectionsId is null and cr.CookbookRecipeId is null");
+            DataTable dt = SQLUtility.GetDataTable("select r.RecipeId, r.RecipeName from Recipe r left join RecipeIngredient ri on r.RecipeId = ri.RecipeId left join RecipeDirections rd on r.RecipeId = rd.RecipeId left join CookbookRecipe cr on r.RecipeId = cr.RecipeId where ri.RecipeIngredientId is null and rd.RecipeDirectionsId is null and cr.CookbookRecipeId is null");
             int recipeid = 0;
             string recipename = "";
             if (dt.Rows.Count > 0)
@@ -177,13 +177,13 @@ namespace RecipeTest
         {
             string sql = @"select r.RecipeId, r.RecipeName 
                             from Recipe r 
-                            left join RecipeIngredients ri 
+                            left join RecipeIngredient ri 
                             on r.RecipeId = ri.RecipeId 
                             left join RecipeDirections rd 
                             on r.RecipeId = rd.RecipeId 
                             left join CookbookRecipe cr 
                             on r.RecipeId = cr.RecipeId 
-                            where ri.RecipeIngredientsId is not null 
+                            where ri.RecipeIngredientId is not null 
                             and rd.RecipeDirectionsId is not null 
                             and cr.CookbookRecipeId is not null
                             and 

@@ -1,4 +1,4 @@
---use HeartyHearthDB
+use HeartyHearthDB
 go 
 drop table if exists CookbookRecipe
 go
@@ -14,7 +14,7 @@ drop table if exists Meal
 go
 drop table if exists RecipeDirections
 go 
-drop table if exists RecipeIngredients
+drop table if exists RecipeIngredient
 go
 drop table if exists Recipe
 go 
@@ -88,18 +88,18 @@ create table dbo.Recipe(
 )
 
 
-create table dbo.RecipeIngredients(
-    RecipeIngredientsId int not null identity primary key, 
+create table dbo.RecipeIngredient(
+    RecipeIngredientId int not null identity primary key, 
     RecipeId int not null 
-        constraint f_Recipe_RecipeIngredients foreign key references Recipe(RecipeId), 
+        constraint f_Recipe_RecipeIngredient foreign key references Recipe(RecipeId), 
     MeasurementId int 
-        constraint f_Measurement_RecipeIngredients foreign key references Measurement(MeasurementId), 
+        constraint f_Measurement_RecipeIngredient foreign key references Measurement(MeasurementId), 
     IngredientId int not null 
-        constraint f_Ingredient_RecipeIngredients foreign key references Ingredient(IngredientId),
+        constraint f_Ingredient_RecipeIngredient foreign key references Ingredient(IngredientId),
     Amount decimal (4,2) not null 
-        constraint c_RecipeIngredients_Amount_must_be_above_0 check(Amount > 0),
+        constraint c_RecipeIngredient_Amount_must_be_above_0 check(Amount > 0),
     IngredientSequence int not null  
-        constraint c_RecipeIngredients_Ingredient_Sequence_must_be_above_0 check(IngredientSequence > 0), 
+        constraint c_RecipeIngredient_Ingredient_Sequence_must_be_above_0 check(IngredientSequence > 0), 
     Constraint u_Recipe_IngredientSequence_RecipeId unique(IngredientSequence, RecipeId),
     Constraint u_Recipe_IngredientId_RecipeId unique(IngredientId, RecipeId)
 )

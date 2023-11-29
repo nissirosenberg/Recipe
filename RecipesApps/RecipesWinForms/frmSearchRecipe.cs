@@ -1,13 +1,11 @@
-﻿using  System.Data;
-using CPUFramework;
-namespace RecipesWinForms
+﻿namespace RecipesWinForms
 {
     public partial class frmSearchRecipe : Form
     {
         public frmSearchRecipe()
         {
             InitializeComponent();
-            WindowsFormsUtility.FormatGridForSearchResults(gRecipe);
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
 
             btnSearch.Click += BtnSearch_Click;
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;

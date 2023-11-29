@@ -19,11 +19,11 @@ select RecipeName = case r.CurrentStatus when 'Archived' then concat('<span styl
        DatePublished = isnull(convert(varchar, r.DatePublished), ''), 
        DateArchived = isnull(convert(varchar, r.DateArchived), ''), 
        u.UserName, r.Calories, 
-       AmtOfIngredients = count(ri.RecipeIngredientsId)
+       AmtOfIngredients = count(ri.RecipeIngredientId)
 from Recipe r 
 join Users u 
 on r.UserId = u.UserId
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on r.RecipeId = ri.RecipeId
 where r.CurrentStatus in ('Published', 'Archived')
 group by r.RecipeName, r.CurrentStatus, r.DatePublished, DateArchived, u.UserName, r.Calories
@@ -33,9 +33,9 @@ order by r.CurrentStatus desc
 --    Show for a specific (meaning choose one, and include the picture of it)  recipe (three result sets):
 --        a) Recipe header: recipe name, number of calories, number of ingredients and number of steps.
 
-select r.RecipeName, r.Calories, AmtOfIngredients = count(distinct ri.RecipeIngredientsId), AmtOfSteps = count(distinct rd.RecipeDirectionsId), r.RecipePicture
+select r.RecipeName, r.Calories, AmtOfIngredients = count(distinct ri.RecipeIngredientId), AmtOfSteps = count(distinct rd.RecipeDirectionsId), r.RecipePicture
 from Recipe r 
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on ri.RecipeId = r.RecipeId
 join RecipeDirections rd 
 on rd.RecipeId = r.RecipeId
@@ -45,7 +45,7 @@ group by r.RecipeName, r.Calories, r.RecipePicture
 --        b) List of ingredients: show the measurement type and ingredient in one column, sorted by sequence. Ex. 1 Teaspoon Salt  
 select ListOfIngredients = concat(cast(ri.Amount as float), ' ', m.MeasurementName, case  when m.MeasurementName is not null then ' ' else '' end, i.IngredientName)
 from Recipe r 
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on ri.RecipeId = r.RecipeId
 join Ingredient i 
 on ri.IngredientId = i.IngredientId
@@ -164,7 +164,7 @@ join Recipe r
 on r.RecipeId = cr.RecipeId
 join CuisineType ct 
 on ct.CuisineTypeId = r.CuisineTypeId
-join RecipeIngredients ri 
+join RecipeIngredient ri 
 on r.RecipeId = ri.RecipeId
 join RecipeDirections rd 
 on rd.RecipeId = r.RecipeId
@@ -190,7 +190,7 @@ on r.RecipeId = cr.RecipeId
 ;with MaxDirectionSequence as(
         select DirectionsSequence = max(rd.DirectionsSequence), r.RecipeName
         from Recipe r 
-        join RecipeIngredients ri 
+        join RecipeIngredient ri 
         on r.RecipeId = ri.RecipeId
         join RecipeDirections rd 
         on r.RecipeId = rd.RecipeId

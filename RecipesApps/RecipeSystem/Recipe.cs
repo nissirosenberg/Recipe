@@ -1,9 +1,4 @@
-﻿
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-
-namespace RecipeSystem
+﻿namespace RecipeSystem
 {
     public class Recipe
     {

@@ -1,5 +1,5 @@
---use HeartyHearthDB
---go 
+use HeartyHearthDB
+go 
 
 delete CookbookRecipe 
 go 
@@ -15,7 +15,7 @@ delete Meal
 go 
 delete RecipeDirections
 go 
-delete RecipeIngredients
+delete RecipeIngredient
 go
 delete Recipe
 go 
@@ -142,7 +142,7 @@ on x.UserName = u.UserName
       union select 'Jello Ices', 1, 1, 'Pack', 'Jello'
       union select 'Jello Ices', 2, 10, 'Cups', 'Water'
 )
-insert RecipeIngredients(RecipeId, Amount, MeasurementId, IngredientSequence, IngredientId)
+insert RecipeIngredient(RecipeId, Amount, MeasurementId, IngredientSequence, IngredientId)
 select r.RecipeId, x.Amount, m.MeasurementId, x.IngredientSequence, i.IngredientId 
 from x 
 join Recipe r 
