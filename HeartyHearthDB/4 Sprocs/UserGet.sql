@@ -5,7 +5,7 @@ create or alter procedure dbo.UserGet(
 		@IncludeBlank bit = 0)
 as 
 begin 
-	select @UserName = nullif(@UserName, '')
+	select @UserName = nullif(@UserName, ''), @UserId = isnull(@UserId, 0)
 
 	select u.UserId, u.UserFirstName, u.UserLastName, u.UserName, FullName = concat(u.UserFirstName, ' ', u.UserLastName)
 	from Users u 
@@ -13,7 +13,8 @@ begin
 	or @All = 1
 	or u.UserName like '%' + @UserName + '%'
 	union select 0, ' ', ' ', ' ', ' '
-	order by u.UserId
+	where @IncludeBlank = 1
+	order by u.UserId desc
 end
 go
 grant execute on UserGet to adminrole
@@ -30,3 +31,6 @@ exec UserGet @All = 1
 exec UserGet @UserName = '' --return no results
 exec UserGet @UserName = 'a'
 */
+
+
+

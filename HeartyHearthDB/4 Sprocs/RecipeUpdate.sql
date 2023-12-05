@@ -1,7 +1,7 @@
 create or alter procedure dbo.RecipeUpdate(
 	@RecipeId int = 0 output,
-	@UserId int = 0,
-	@CuisineTypeId int = 0,
+	@UserId int = 0 output,
+	@CuisineTypeId int = 0 output,
 	@RecipeName varchar(100) = '',
 	@Calories int = 0,
 	@DateDrafted datetime = ''  output,

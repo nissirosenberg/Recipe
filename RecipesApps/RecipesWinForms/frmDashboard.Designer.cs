@@ -150,6 +150,7 @@
             gTotals.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             gTotals.BackgroundColor = Color.White;
             gTotals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gTotals.Enabled = false;
             gTotals.Location = new Point(187, 262);
             gTotals.MultiSelect = false;
             gTotals.Name = "gTotals";

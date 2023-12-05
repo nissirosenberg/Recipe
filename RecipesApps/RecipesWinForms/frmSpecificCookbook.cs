@@ -35,10 +35,11 @@
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
             DataTable dtusers = SpecificRecipe.GetUsersList(true);
-            lstUsers.DataSource = dtusers;
-            lstUsers.ValueMember = "UserId";
-            lstUsers.DisplayMember = "UserName";
-            lstUsers.DataBindings.Add("SelectedValue", dtspecificcookbook, lstUsers.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
+            WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtspecificcookbook, "User");
+            //lstUserName.DataSource = dtusers;
+            //lstUserName.ValueMember = "UserId";
+            //lstUserName.DisplayMember = "UserName";
+            //lstUserName.DataBindings.Add("SelectedValue", dtspecificcookbook, lstUserName.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
             WindowsFormsUtility.SetControlBinding(cbxActive, bindsource);
             LoadCookbookRecipes();
             SetButtonsEnabledBasedOnNewRecord();

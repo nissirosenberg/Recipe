@@ -1,4 +1,6 @@
-﻿namespace RecipesWinForms
+﻿using RecipeSystem;
+
+namespace RecipesWinForms
 {
     public partial class frmSpecificRecipe : Form
     {
@@ -22,7 +24,7 @@
             this.FormClosing += FrmSpecificRecipe_FormClosing;
         }
 
-     
+
 
         public void LoadRecipeForm(int specificrecipeid, bool setbinding = true)
         {
@@ -42,11 +44,14 @@
             if (setbinding == true)
             {
                 WindowsFormsUtility.SetListBinding(lstCuisineTypeName, dtcuisinetypes, dtspecificrecipe, "CuisineType");
+                WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtspecificrecipe, "User");
 
-                lstUsers.DataSource = dtusers;
-                lstUsers.ValueMember = "UserId";
-                lstUsers.DisplayMember = "UserName";
-                lstUsers.DataBindings.Add("SelectedValue", dtspecificrecipe, lstUsers.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
+                //lstUserName.DataSource = dtusers;
+                //lstUserName.ValueMember = "UserId";
+                //lstUserName.DisplayMember = "UserName";
+                //lstUserName.DataBindings.Add("SelectedValue", dtspecificrecipe, lstUserName.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
+
+
 
                 WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
@@ -121,6 +126,7 @@
             }
             catch (Exception ex)
             {
+                LoadRecipeIngredient();
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
         }
@@ -133,6 +139,7 @@
             }
             catch (Exception ex)
             {
+                LoadRecipeSteps();
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
         }

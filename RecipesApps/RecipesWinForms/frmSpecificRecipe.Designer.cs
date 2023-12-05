@@ -57,7 +57,7 @@
             txtCurrentStatus = new TextBox();
             lstCuisineTypeName = new ComboBox();
             lblAuthor = new Label();
-            lstUsers = new ComboBox();
+            lstUserName = new ComboBox();
             tbRecipeIngredientsAndSteps = new TabControl();
             tabPage1 = new TabPage();
             tblIngredients = new TableLayoutPanel();
@@ -185,7 +185,7 @@
             tblRecipeDetails.Controls.Add(txtCurrentStatus, 1, 4);
             tblRecipeDetails.Controls.Add(lstCuisineTypeName, 1, 2);
             tblRecipeDetails.Controls.Add(lblAuthor, 0, 1);
-            tblRecipeDetails.Controls.Add(lstUsers, 1, 1);
+            tblRecipeDetails.Controls.Add(lstUserName, 1, 1);
             tblRecipeDetails.Dock = DockStyle.Fill;
             tblRecipeDetails.Location = new Point(3, 37);
             tblRecipeDetails.Name = "tblRecipeDetails";
@@ -388,14 +388,14 @@
             lblAuthor.TabIndex = 4;
             lblAuthor.Text = "&Author";
             // 
-            // lstUsers
+            // lstUserName
             // 
-            lstUsers.Anchor = AnchorStyles.Left;
-            lstUsers.FormattingEnabled = true;
-            lstUsers.Location = new Point(151, 33);
-            lstUsers.Name = "lstUsers";
-            lstUsers.Size = new Size(163, 29);
-            lstUsers.TabIndex = 5;
+            lstUserName.Anchor = AnchorStyles.Left;
+            lstUserName.FormattingEnabled = true;
+            lstUserName.Location = new Point(151, 33);
+            lstUserName.Name = "lstUserName";
+            lstUserName.Size = new Size(163, 29);
+            lstUserName.TabIndex = 5;
             // 
             // tbRecipeIngredientsAndSteps
             // 
@@ -610,6 +610,6 @@
         private ComboBox lstCuisineTypeName;
         private Label lblStatusDates;
         private Label lblAuthor;
-        private ComboBox lstUsers;
+        private ComboBox lstUserName;
     }
 }

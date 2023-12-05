@@ -39,7 +39,7 @@
             lblPrice = new Label();
             lblActive = new Label();
             txtCookbookName = new TextBox();
-            lstUsers = new ComboBox();
+            lstUserName = new ComboBox();
             cbxActive = new CheckBox();
             tblCookbookRecipes = new TableLayoutPanel();
             btnSaveCookbookRecipes = new Button();
@@ -68,7 +68,7 @@
             tblMain.Controls.Add(lblPrice, 0, 4);
             tblMain.Controls.Add(lblActive, 0, 5);
             tblMain.Controls.Add(txtCookbookName, 1, 1);
-            tblMain.Controls.Add(lstUsers, 1, 2);
+            tblMain.Controls.Add(lstUserName, 1, 2);
             tblMain.Controls.Add(cbxActive, 1, 5);
             tblMain.Controls.Add(tblCookbookRecipes, 0, 6);
             tblMain.Controls.Add(tblPriceDateCreated, 1, 4);
@@ -171,14 +171,14 @@
             txtCookbookName.Size = new Size(249, 28);
             txtCookbookName.TabIndex = 1;
             // 
-            // lstUsers
+            // lstUserName
             // 
-            lstUsers.Anchor = AnchorStyles.Left;
-            lstUsers.FormattingEnabled = true;
-            lstUsers.Location = new Point(131, 99);
-            lstUsers.Name = "lstUsers";
-            lstUsers.Size = new Size(249, 29);
-            lstUsers.TabIndex = 3;
+            lstUserName.Anchor = AnchorStyles.Left;
+            lstUserName.FormattingEnabled = true;
+            lstUserName.Location = new Point(131, 99);
+            lstUserName.Name = "lstUserName";
+            lstUserName.Size = new Size(249, 29);
+            lstUserName.TabIndex = 3;
             // 
             // cbxActive
             // 
@@ -323,7 +323,7 @@
         private Label lblPrice;
         private Label lblActive;
         private TextBox txtCookbookName;
-        private ComboBox lstUsers;
+        private ComboBox lstUserName;
         private CheckBox cbxActive;
         private TableLayoutPanel tblCookbookRecipes;
         private Button btnSaveCookbookRecipes;

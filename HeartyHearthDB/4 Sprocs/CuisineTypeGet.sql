@@ -1,4 +1,4 @@
-create or alter procedure dbo.CuisineTypeGet(@CuisineTypeId int = 0, @All bit = 0, @CuisineTypeName varchar(35) = '', @IncludeBlank bit = 0)
+create or alter procedure dbo.CuisineTypeGet(@CuisineTypeId int = 0 output, @All bit = 0, @CuisineTypeName varchar(35) = '', @IncludeBlank bit = 0)
 as 
 begin
 	select @CuisineTypeName = nullif(@CuisineTypeName, ''), @IncludeBlank = isnull(@IncludeBlank, 0)

@@ -9,7 +9,7 @@ begin
 					' (', 
 					ct.CuisineTypeName, 
 					') has ', 
-					count(distinct ri.RecipeIngredientsId), 
+					count(distinct ri.RecipeIngredientId), 
 					' ingredients and ',
 					count(distinct rd.RecipeDirectionsId),
 					' steps.'
@@ -17,7 +17,7 @@ begin
 	from Recipe r 
 	join CuisineType ct 
 	on r.CuisineTypeId = ct.CuisineTypeId
-	join RecipeIngredients ri
+	join RecipeIngredient ri
 	on r.RecipeId = ri.RecipeId
 	join RecipeDirections rd
 	on r.RecipeId = rd.RecipeId
