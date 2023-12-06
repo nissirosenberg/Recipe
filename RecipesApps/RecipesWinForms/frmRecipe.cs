@@ -28,7 +28,7 @@
             lstUserName.ValueMember = "UserId";
             lstUserName.DisplayMember = "UserName";
             lstUserName.DataBindings.Add("SelectedValue", dtrecipe, lstUserName.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
-            WindowsFormsUtility.SetListBinding(lstCuisineTypeName, dtcuisinetype, dtrecipe, "CuisineType");
+            WindowsFormsUtility.SetListBinding(lstCuisineTypeName, dtcuisinetype, bindsource, "CuisineType");
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(dtpDateDrafted, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);

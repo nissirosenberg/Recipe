@@ -35,7 +35,7 @@
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
             DataTable dtusers = SpecificRecipe.GetUsersList(true);
-            WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtspecificcookbook, "User");
+            WindowsFormsUtility.SetListBinding(lstUserName, dtusers, bindsource, "User");
             //lstUserName.DataSource = dtusers;
             //lstUserName.ValueMember = "UserId";
             //lstUserName.DisplayMember = "UserName";

@@ -29,7 +29,7 @@ namespace RecipeTest
         {
             DataTable dt = new();
             DBManager.SetConnectionString(testconnstring, false);
-            SQLUtility.GetDataTable(sql);
+            dt = SQLUtility.GetDataTable(sql);
             DBManager.SetConnectionString(connstring, false);
             return dt;
         }
@@ -190,7 +190,6 @@ namespace RecipeTest
             if (dt.Rows.Count > 0)
             {
                 recipeid = (int)dt.Rows[0]["RecipeId"];
-                recipename = dt.Rows[0]["RecipeName"].ToString();
             }
             Assume.That(recipeid > 0, "No recipes without related records in DB, can't test");
             TestContext.WriteLine("Existing recipe without relatated records, with id " + recipeid);
@@ -216,7 +215,7 @@ namespace RecipeTest
                             and rd.RecipeDirectionsId is not null 
                             and cr.CookbookRecipeId is not null
                             and 
-                               (DATEDIFF(day, r.DateArchived, GETDATE()) <= 30 
+                               (DATEDIFF(day, r.DateArchived, GETDATE()) >= 30 
                                 or 
                                 r.CurrentStatus = 'Published')";
             DataTable dt = GetDataTable(sql);

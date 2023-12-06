@@ -43,22 +43,16 @@ namespace RecipesWinForms
 
             if (setbinding == true)
             {
-                WindowsFormsUtility.SetListBinding(lstCuisineTypeName, dtcuisinetypes, dtspecificrecipe, "CuisineType");
-                WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtspecificrecipe, "User");
-
-                //lstUserName.DataSource = dtusers;
-                //lstUserName.ValueMember = "UserId";
-                //lstUserName.DisplayMember = "UserName";
-                //lstUserName.DataBindings.Add("SelectedValue", dtspecificrecipe, lstUserName.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
-
-
-
                 WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtCurrentStatus, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtDateDrafted, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
                 WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
+
+                WindowsFormsUtility.SetListBinding(lstCuisineTypeName, dtcuisinetypes, bindsource, "CuisineType");
+                WindowsFormsUtility.SetListBinding(lstUserName, dtusers, bindsource, "User");
+
                 LoadRecipeIngredient();
                 LoadRecipeSteps();
             }
