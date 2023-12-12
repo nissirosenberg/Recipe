@@ -13,7 +13,7 @@ namespace HeartyHearthMAUI
             var stream = a.GetManifestResourceStream($"{typeof(Settings).Namespace}.secret-appsettings.json");
             IConfigurationRoot config = new ConfigurationBuilder()
                 .AddJsonStream(stream)
-                .Build();
+                .Build(); 
 
             builder
                 .UseMauiApp<App>()
