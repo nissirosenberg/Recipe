@@ -77,7 +77,8 @@ namespace RecipeTest
             r["Calories"] = 4000;
             r["DateDrafted"] = DateTime.Now.ToString();
             TestContext.WriteLine($"Insert Recipe with UserId {userid}, and CuisineTypeId {cuisinetypeid}, and RecipeName " + recipetestname);
-            Recipe.Save(dt);
+            bizRecipe recipe = new();
+            recipe.Save(dt);
 
             int newid = GetFirstColumnFirstRowValue("select RecipeId from Recipe where RecipeName = '" + recipetestname + "'");
             Assert.IsTrue(newid > 0, "The data was not inserted");
@@ -194,7 +195,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipes without related records in DB, can't test");
             TestContext.WriteLine("Existing recipe without relatated records, with id " + recipeid);
             TestContext.WriteLine("Ensure that app can delete with RecipeId " + recipeid);
-            Recipe.Delete(dt);
+            bizRecipe recipe = new();
+            recipe.Delete(dt);
             DataTable dtafterdelete = GetDataTable("select * from Recipe where RecipeId = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "Record with RecipeId " + recipeid + " exists in DB");
             TestContext.WriteLine("Recipe with RecipeId " + recipeid + " doesn't exist in DB");
@@ -236,8 +238,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipes in DB, can't test");
             TestContext.WriteLine("Existing RecipeId = " + recipeid);
             TestContext.WriteLine("Ensure that app loads recipe " + recipeid);
-
-            DataTable dt = Recipe.Load(recipeid);
+            bizRecipe recipe = new();
+            DataTable dt = recipe.Load(recipeid);
             int loadedid = (int)dt.Rows[0]["RecipeId"];
             Assert.IsTrue(loadedid == recipeid, loadedid + " <> " + recipeid);
             TestContext.WriteLine("Loaded recipe (" + loadedid + ")");
