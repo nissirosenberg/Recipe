@@ -179,7 +179,7 @@ namespace RecipeTest
         }
 
         [Test]
-        public void DeleteRecipe() 
+        public void DeleteRecipe()
         {
             DataTable dt = GetDataTable(@"select r.RecipeId, r.RecipeName 
                                         from Recipe r 
