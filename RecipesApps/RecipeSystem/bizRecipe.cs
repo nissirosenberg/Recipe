@@ -1,10 +1,10 @@
 ﻿namespace RecipeSystem
 {
-    public class bizRecipe : bizObject
+    public class bizRecipe : bizObject<bizRecipe>
     {
-        public bizRecipe() 
+        public bizRecipe()
         {
-        
+
         }
         private int _recipeid;
         private string _recipename;
@@ -16,6 +16,14 @@
         private DateTime? _datepublished;
         private DateTime? _datearchived;
         private string _currentstatus;
+
+        public List<bizRecipe> Search(string recipenameval)
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand(this.GetSprocName);
+            SQLUtility.SetParameterValue(cmd, "RecipeName", recipenameval);
+            DataTable dt = SQLUtility.GetDataTable(cmd);
+            return this.GetListFromDataTable(dt);
+        }
 
         public int RecipeId
         {
@@ -119,7 +127,7 @@
             {
                 if (value != _datearchived)
                 {
-                   _datearchived = value;
+                    _datearchived = value;
                     InvokePropertyChanged();
                     InvokePropertyChanged("CurrentStatus");
                 }
