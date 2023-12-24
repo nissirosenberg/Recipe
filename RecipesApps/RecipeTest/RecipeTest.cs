@@ -9,20 +9,20 @@ namespace RecipeTest
     public class RecipeTest
     {
         string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
-         string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
+        string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
         [SetUp]
         public void Setup()
         {
             DBManager.SetConnectionString(testconnstring, true);
         }
-        
+
         private int GetFirstColumnFirstRowValue(string sql)
         {
             int n = 0;
             DBManager.SetConnectionString(testconnstring, true);
             n = SQLUtility.GetFirstColumnFirstRowValue(sql);
             DBManager.SetConnectionString(connstring, true);
-            return n;  
+            return n;
         }
 
         private DataTable GetDataTable(string sql)
@@ -51,11 +51,27 @@ namespace RecipeTest
             TestContext.WriteLine("There are " + numrecipes + " recipes that contain " + criteria + " in its name");
             TestContext.WriteLine("Ensure that recipe search returns " + numrecipes + " rows");
 
-            DataTable dt = Recipe.SearchRecipes(criteria);
-            int results = dt.Rows.Count;
+            bizRecipe r = new();
+            List<bizRecipe> lst = r.Search(criteria);
 
-            Assert.IsTrue(results == numrecipes, "Results of recipe search does not match number of recipes");
-            TestContext.WriteLine("Number of rows returns by recipe search is " + results);
+            Assert.IsTrue(lst.Count == numrecipes, "Results of recipe search does not match number of recipes");
+            TestContext.WriteLine("Number of rows returns by recipe search is " + lst.Count);
+        }
+
+        [Test]
+        public void SearchIngredients()
+        {
+            string criteria = "a";
+            int numingredients = GetFirstColumnFirstRowValue("Select Total = count(*) from Ingredient i where i.ingredientname like '%" + criteria + "%'");
+            Assume.That(numingredients > 0, "No ingredients in DB, can't test");
+            TestContext.WriteLine("There are " + numingredients + " ingredients that contain " + criteria + " in its name");
+            TestContext.WriteLine("Ensure that ingredient search returns " + numingredients + " rows");
+
+            bizIngredient i = new();
+            List<bizIngredient> lst = i.Search(criteria);
+
+            Assert.IsTrue(lst.Count == numingredients, "Results of ingredient search does not match number of ingredients");
+            TestContext.WriteLine("Number of rows returns by ingredient search is " + lst.Count);
         }
 
         [Test]
@@ -255,16 +271,54 @@ namespace RecipeTest
         }
 
         [Test]
-        public void GetListOfUsers()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GetListOfUsers(bool includeblank)
         {
             int totalusers = GetFirstColumnFirstRowValue("select total = count(*) from Users");
+            if (includeblank == true)
+            {
+                totalusers = totalusers + 1;
+            }
             Assume.That(totalusers > 0, "No users in DB, can't test");
             TestContext.WriteLine("Number of Users in DB = " + totalusers);
             TestContext.WriteLine("Ensure that number of users returned by test = " + totalusers);
+            bizUser u = new();
+            var lst = u.GetList(includeblank);
+            Assert.IsTrue(lst.Count == totalusers, "Number of users (" + lst.Count + ") <> " + totalusers);
+            TestContext.WriteLine("Number of rows in Users = " + lst.Count);
+        }
 
-            DataTable dt = Recipe.GetUsersList();
-            Assert.IsTrue(dt.Rows.Count == totalusers, "Number of users (" + dt.Rows.Count + ") <> " + totalusers);
-            TestContext.WriteLine("Number of rows in Users = " + dt.Rows.Count);
+        [Test]
+        public void GetListOfRecipes()
+        {
+            int totalrecipes = GetFirstColumnFirstRowValue("select total = count(*) from Recipe");
+            Assume.That(totalrecipes > 0, "No recipes in Db, can't test");
+            TestContext.WriteLine("Number of Recipes in DB = " + totalrecipes);
+            TestContext.WriteLine("Ensure that number of recipes returned by test = " + totalrecipes);
+            bizRecipe r = new();
+            var lst = r.GetList();
+            Assert.IsTrue(lst.Count == totalrecipes, "Number of recipes: " + lst.Count + " <> " + totalrecipes);
+            TestContext.WriteLine("Number of rows in Recipes = " + lst.Count);
+        }
+
+        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GetListOfIngredients(bool includeblank)
+        {
+            int totalingredients = GetFirstColumnFirstRowValue("select total = count(*) from Ingredient");
+            if (includeblank == true)
+            {
+                totalingredients = totalingredients + 1;
+            }
+            Assume.That(totalingredients > 0, "No ingredients in DB, can't test");
+            TestContext.WriteLine("Number of Ingredients in DB = " + totalingredients);
+            TestContext.WriteLine("Ensure that number of ingredients returned by test = " + totalingredients);
+            bizIngredient i = new();
+            var lst = i.GetList(includeblank);
+            Assert.IsTrue(lst.Count == totalingredients, "Number of ingredients: " + lst.Count + " <> " + totalingredients);
+            TestContext.WriteLine("Number of rows in ingredients = " + lst.Count);
         }
 
         private int GetExistingId(string tablename)
