@@ -11,7 +11,7 @@ begin
 	select i.IngredientId, i.IngredientName
 	from Ingredient i 
 	where i.IngredientId = @IngredientId
-	or i.IngredientId like '%' + @IngredientId + '%'
+	or i.IngredientName like '%' + @IngredientName + '%'
 	or @All = 1
 	union select 0, ' '
 	where @IncludeBlank = 1
