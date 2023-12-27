@@ -14,9 +14,9 @@ begin
 			r.CuisineTypeId, 
 			r.RecipeName, 
 			r.Calories, 
-			DateDrafted = convert(varchar, r.DateDrafted, 101), 
-			DatePublished = convert(varchar, r.DatePublished, 101), 
-			DateArchived = convert(varchar, r.DateArchived, 101),  
+			DateDrafted = convert(datetime, r.DateDrafted, 101), 
+			DatePublished = convert(datetime, r.DatePublished, 101), 
+			DateArchived = convert(datetime, r.DateArchived, 101),  
 			r.CurrentStatus, 
 			r.RecipePicture
 	from Recipe r 
