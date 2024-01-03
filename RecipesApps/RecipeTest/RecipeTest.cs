@@ -121,13 +121,13 @@ namespace RecipeTest
             TestContext.WriteLine("Change RecipeName to " + recipename + " and UserId to " + randomuserid + " and CuisineTypeId to " + randomcuisinetypeid + " and Calories to " + calories);
 
 
-
-            DataTable dt = Recipe.Load(recipeid);
+            bizRecipe recipe = new();
+            DataTable dt = recipe.Load(recipeid);
             dt.Rows[0]["RecipeName"] = recipename;
             dt.Rows[0]["UserId"] = randomuserid;
             dt.Rows[0]["CuisineTypeId"] = randomcuisinetypeid;
             dt.Rows[0]["Calories"] = calories;
-            Recipe.Save(dt);
+            recipe.Save(dt);
 
 
 
