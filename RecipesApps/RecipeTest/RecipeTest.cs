@@ -122,7 +122,7 @@ namespace RecipeTest
 
 
             bizRecipe recipe = new();
-            DataTable dt = recipe.Load(recipeid);
+            DataTable dt = recipe.Load(recipeid); 
             dt.Rows[0]["RecipeName"] = recipename;
             dt.Rows[0]["UserId"] = randomuserid;
             dt.Rows[0]["CuisineTypeId"] = randomcuisinetypeid;
