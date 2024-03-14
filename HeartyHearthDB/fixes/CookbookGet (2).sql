@@ -9,6 +9,7 @@ begin
 	select @CookbookId = isnull(@CookbookId, 0), @CookbookName = isnull(@CookbookName, '')
 
 	select c.CookbookId,
+	c.UniqueCookbookId,
 		   c.UserId,
 		   c.CookbookName, 
 		   u.UserName,
@@ -24,7 +25,7 @@ begin
 	where c.CookbookId = @CookbookId
 	or @All = 1
 	or c.CookbookName = @CookbookName
-	union select 0, 0, ' ', ' ', 0, convert(bit, 0), convert(date, ' '),0, ' ', ' '
+	union select 0,' ', 0, ' ', ' ', 0, convert(bit, 0), convert(date, ' '),0, ' ', ' '
 	where @IncludeBlank = 1
 	order by c.CookbookId
 
