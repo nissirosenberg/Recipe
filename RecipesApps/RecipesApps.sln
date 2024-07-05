@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeTest", "RecipeTest\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartyHearthMAUI", "HeartyHearthMAUI\HeartyHearthMAUI.csproj", "{EB5AA43A-7298-462E-B883-DBD3223AD6EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeAPI", "RecipeAPI\RecipeAPI.csproj", "{BD585240-0A5D-49F3-B3CE-6EE187CAE071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeAPI", "RecipeAPI\RecipeAPI.csproj", "{BD585240-0A5D-49F3-B3CE-6EE187CAE071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeClassLibraryProjects", "RecipeClassLibraryProjects\RecipeClassLibraryProjects.csproj", "{84E2A624-1141-4943-9931-0C2381FBE8C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{BD585240-0A5D-49F3-B3CE-6EE187CAE071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD585240-0A5D-49F3-B3CE-6EE187CAE071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD585240-0A5D-49F3-B3CE-6EE187CAE071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E2A624-1141-4943-9931-0C2381FBE8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E2A624-1141-4943-9931-0C2381FBE8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E2A624-1141-4943-9931-0C2381FBE8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E2A624-1141-4943-9931-0C2381FBE8C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
