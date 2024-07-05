@@ -41,6 +41,7 @@ end
 go
 
 grant execute on RecipeGet to adminrole
+grant execute on RecipeGet to appadmin
 /*
 exec RecipeGet
 

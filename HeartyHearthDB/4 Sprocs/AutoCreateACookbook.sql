@@ -34,5 +34,6 @@ begin
 end
 go
 grant execute on AutoCreateACookbook to adminrole
+grant execute on AutoCreateACookbook to approle
 go
 
