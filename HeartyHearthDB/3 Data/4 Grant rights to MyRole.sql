@@ -1,0 +1,42 @@
+--select concat('grant execute on ',  r.ROUTINE_NAME , ' to MyRole')
+--from INFORMATION_SCHEMA.ROUTINES r 
+
+grant execute on RecipeUpdate to MyRole
+grant execute on RecipeListGet to MyRole
+grant execute on RecipeIngredientUpdate to MyRole
+grant execute on RecipeIngredientGet to MyRole
+grant execute on RecipeIngredientDelete to MyRole
+grant execute on RecipeGet to MyRole
+grant execute on RecipeDirectionsUpdate to MyRole
+grant execute on RecipeDirectionsGet to MyRole
+grant execute on RecipeDirectionsDelete to MyRole
+grant execute on RecipeDelete to MyRole
+grant execute on RecipeClone to MyRole
+grant execute on MeasurementUpdate to MyRole
+grant execute on MeasurementGet to MyRole
+grant execute on MeasurementDelete to MyRole
+grant execute on MealListGet to MyRole
+grant execute on IngredientUpdate to MyRole
+grant execute on IngredientGet to MyRole
+grant execute on IngredientDelete to MyRole
+grant execute on CuisineTypeUpdate to MyRole
+grant execute on CuisineTypeGet to MyRole
+grant execute on CuisineTypeDelete to MyRole
+grant execute on CourseUpdate to MyRole
+grant execute on CourseGet to MyRole
+grant execute on CourseDelete to MyRole
+grant execute on CookbookUpdate to MyRole
+grant execute on CookbookRecipeUpdate to MyRole
+grant execute on CookbookRecipeGet to MyRole
+grant execute on CookbookRecipeDelete to MyRole
+grant execute on CookbookListGet to MyRole
+grant execute on CookbookGet to MyRole
+grant execute on CookbookDelete to MyRole
+grant execute on AutoCreateACookbook to MyRole
+grant execute on MealGet to MyRole
+grant execute on RecipeSpecifics to MyRole
+grant execute on CaloriesPerMeal to MyRole
+grant execute on UserUpdate to MyRole
+grant execute on UserGet to MyRole
+grant execute on UserDelete to MyRole
+grant execute on TotalRecipesMealsCookbooksGet to MyRole

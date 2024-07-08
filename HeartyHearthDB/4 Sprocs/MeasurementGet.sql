@@ -20,3 +20,4 @@ begin
 end
 go
 grant execute on MeasurementGet to adminrole
+grant execute on MeasurementGet to appadmin
