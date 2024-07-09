@@ -5,8 +5,8 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>
-        <table class="table">
-            <thead>
+        <table id="recipeTable" class="table">
+            @* <thead>
                 <tr>
                     <th scope="col">Recipe Name</th>
                     <th scope="col">Last</th>
@@ -18,19 +18,56 @@
                     <td>Otto</td>
                 </tr>
                 
-            </tbody>
+            </tbody> *@
         </table>
     </p>
 </div>
-@* https://unpkg.com/axios/dist/axios.min.js *@
 
 <script type="module" >
     // import axios from 'axios';
-   // const axios = require('axios');
+    // const axios = ('axios').default;
+    const axios = require(`axios`).default;
 
-    console.log("GetRecipes")
-    // axios.get("/api/recipes/GetRecipes")
-    //     .then(response => {
-    //         console.log()
-    //     })
+    let Recipes = [];
+    axios.get(`/api/Recipes/GetRecipes`)
+    async function GetRecipes() {
+        await axios.get(`/api/Recipes/GetRecipes`)
+            .then((res) => {
+                Recipes = res.data
+            })
+            .catch(error => {
+                alert(`Counldn't get recipes`);
+            });
+    }
+    //GetRecipes();
+    console.log(getRecipes);
+
+    async function displayRecipes{
+        const table = document.querySelector(`#recipeTable`);
+        let s = "";
+            s += `<thead>
+                <tr>
+                    <th scope="col">Recipe Name</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Date Published</th>
+                    <th scope="col">Current Status</th>
+                </tr>
+            </thead>`;
+        for (let r of Recipes) {
+            s += `<tbody>
+                <tr class="table-active">
+                    <td>${r.RecipeName} </td>
+                    <td>${r.User}</td>
+                    <td>${r.Calories}</td>
+                    <td>${r.DatePublished}</td>
+                    <td>${r.CurrentStatus}</td>
+                </tr>
+            </tbody>`
+        }
+        table.innerHTML = "";
+        table.innerHTML = s;
+    }
+    
+
 </script>

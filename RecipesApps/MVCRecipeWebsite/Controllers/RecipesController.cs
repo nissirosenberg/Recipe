@@ -9,6 +9,8 @@ using RecipeClassLibrary;
 
 namespace MVCRecipeWebsite.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class RecipesController : Controller
     {
         private readonly HeartyHearthDbContext _context;
@@ -21,7 +23,7 @@ namespace MVCRecipeWebsite.Controllers
         [HttpGet, Route("GetRecipes")]
         public async Task<List<Recipe>> GetRecipes()
         {
-            return await _context.Recipes.ToListAsync();
+            return await _context.Recipes.Include(x => x.User).ToListAsync();
         }
 
         // GET: Recipes
